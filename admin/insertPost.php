@@ -1,5 +1,5 @@
 <?php
-    include_once 'config.php';
+    include_once '../config.php';
     $query = $pdo->prepare('SELECT * FROM  blog_posts ORDER BY id DESC');
     $query->execute();
 
@@ -23,20 +23,18 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-                <?php
-                foreach($blogPost as $blog){
-                    echo '<div class="blog-post">';
-                    echo '<h2>' . $blog['titulo'] . '</h2>';
-                    echo '<p>Jan, 1 2020 by <a href="#">Mynor</a></p>';
-                    echo '<div class="blog-post-image">';
-                    echo '<img src="Images/blog.jpg" alt="Imagen del blog">';
-                    echo '</div>';
-                    echo '<div class="blog-post-content">';
-                    echo '<p>' . $blog['content'] . '</p>';
-                    echo '</div>';
-                    echo '</div>';
-                }
-               ?>
+                <h2>New Post</h2>
+                <a class="btn btn-default" href="posts.php">Back</a>
+                
+                <form action="insertPost.php" method="post">
+                    <div class="form-group">
+                        <label for="txtTitle">Title</label>
+                        <input type="text" name='txtTitle' id='txtTitle' class="form-control">
+                    </div>
+                    <textarea class="form-control" name="txtContent" id="txtContent" rows="5"></textarea>
+                    <br>
+                    <input type="submit" value="Save" class="btn btn-primary">
+                </form>
             </div>
             <div class="col-md-4">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam saepe fugit consequatur autem blanditiis, aliquid tempora ullam harum, recusandae tenetur est fuga dolorem similique nihil impedit sint, iste fugiat hic.
