@@ -34,7 +34,7 @@
                     <?php
                     foreach($blogPost as $blog){
                         echo '<tr>';
-                        echo '<td>' .$blog['titulo'] . '</td>';
+                        echo '<td>' .$blog['title'] . '</td>';
                         echo '<td>Edit</td>';
                         echo '<td>Delete</td>';
                         echo '</tr>';

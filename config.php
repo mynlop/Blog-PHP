@@ -3,7 +3,7 @@
 $dbHost = 'localhost';
 $dbName = 'cursophp';
 $dbUser = 'root';
-$dbPass = '';
+$dbPass = 'sql123';
 
 try{
     $pdo = new PDO("mysql:host=$dbHost; dbname=$dbName", $dbUser, $dbPass);

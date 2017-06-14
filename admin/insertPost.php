@@ -4,7 +4,7 @@
     $result = false;
 
     if(!empty($_POST)){
-        $sql = 'INSERT INTO blog_posts(titulo, content) VALUES (:title, :content)';
+        $sql = 'INSERT INTO blog_posts(title, content) VALUES (:title, :content)';
         $query = $pdo->prepare($sql);
         $result = $query->execute([
             'title' => $_POST['txtTitle'],
