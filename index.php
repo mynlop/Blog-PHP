@@ -1,5 +1,4 @@
 <?php
-    include_once 'config.php';
     $query = $pdo->prepare('SELECT * FROM  blog_posts ORDER BY id DESC');
     $query->execute();
 
@@ -26,7 +25,7 @@
                 <?php
                 foreach($blogPost as $blog){
                     echo '<div class="blog-post">';
-                    echo '<h2>' . $blog['titulo'] . '</h2>';
+                    echo '<h2>' . $blog['title'] . '</h2>';
                     echo '<p>Jan, 1 2020 by <a href="#">Mynor</a></p>';
                     echo '<div class="blog-post-image">';
                     echo '<img src="Images/blog.jpg" alt="Imagen del blog">';
