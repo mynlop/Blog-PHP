@@ -1,9 +1,16 @@
 <?php
     include_once '../config.php';
-    $query = $pdo->prepare('SELECT * FROM  blog_posts ORDER BY id DESC');
-    $query->execute();
+    
+    $result = false;
 
-    $blogPost = $query->fetchAll(PDO::FETCH_ASSOC);
+    if(!empty($_POST)){
+        $sql = 'INSERT INTO blog_posts(titulo, content) VALUES (:title, :content)';
+        $query = $pdo->prepare($sql);
+        $result = $query->execute([
+            'title' => $_POST['txtTitle'],
+            'content' => $_POST['txtContent']
+        ]);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,7 +31,14 @@
         <div class="row">
             <div class="col-md-8">
                 <h2>New Post</h2>
-                <a class="btn btn-default" href="posts.php">Back</a>
+                <p>
+                    <a class="btn btn-default" href="posts.php">Back</a>
+                </p>
+                <?php 
+                    if($result){
+                        echo '<div class="alert alert-success">Post Saved!!</div>';
+                    }
+                ?>
                 
                 <form action="insertPost.php" method="post">
                     <div class="form-group">
