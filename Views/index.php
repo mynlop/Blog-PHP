@@ -39,7 +39,7 @@
             <div class="col-md-12">
                 <footer>
                     <p>Este es el footer del sitio...</p>
-                    <a href="admin/index.php">Admin Panel</a>
+                    <a href="<?php echo BASE_URL; ?>admin">Admin Panel</a>
                 </footer>
             </div>
         </div>
