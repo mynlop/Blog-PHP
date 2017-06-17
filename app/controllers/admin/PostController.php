@@ -21,14 +21,18 @@ class PostController extends BaseController{
         $errors = [];
         $result = false;
         $validator = new Validator();
-        $validator->add('title','required');
-        $validator->add('content', 'required');
+        $validator->add('txtTitle','required');
+        $validator->add('txtContent', 'required');
 
         if($validator->validate($_POST)){
             $blogPost = new BlogPost([
                 'title' => $_POST['txtTitle'],
                 'content' => $_POST['txtContent']
             ]);
+            if($_POST['txtImg']){
+                $blogPost->img_url = $_POST['txtImg'];
+            }
+
             $blogPost->save();
             $result = true;
         }else{
