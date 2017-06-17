@@ -11,8 +11,6 @@ class AuthController extends BaseController{
     }
 
     public function postLogin(){
-        $errors = [];
-
         $validator = new Validator;
         $validator->add('txtEmail','required');
         $validator->add('txtEmail','email');
@@ -24,7 +22,7 @@ class AuthController extends BaseController{
                 if (password_verify($_POST['txtPassword'], $user->password)){
                     // el usuario se autentico con exito
                     $_SESSION['userId'] = $user->id;
-                    header('Location:' . BASE_URL . 'admin');
+                    header('Location: ' . BASE_URL . 'admin');
                     return null;
                 }
             }
@@ -37,5 +35,10 @@ class AuthController extends BaseController{
         return $this->render('login.twig',[
             'errors' => $errors
         ]);
+    }
+
+    public function getLogout(){
+        unset($_SESSION['userId']);
+        header('Location: ' . BASE_URL . 'auth/login');
     }
 }
