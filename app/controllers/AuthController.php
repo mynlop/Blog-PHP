@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Sirius\Validation\Validator;
 use App\Models\User;
+use App\Log;
 
 class AuthController extends BaseController{
     public function getLogin(){
@@ -11,7 +12,7 @@ class AuthController extends BaseController{
     }
 
     public function postLogin(){
-        $validator = new Validator;
+        $validator = new Validator();
         $validator->add('txtEmail','required');
         $validator->add('txtEmail','email');
         $validator->add('txtPassword','required');
@@ -22,8 +23,9 @@ class AuthController extends BaseController{
                 if (password_verify($_POST['txtPassword'], $user->password)){
                     // el usuario se autentico con exito
                     $_SESSION['userId'] = $user->id;
+                    Log::logInfo('Login userId: ' .$user->id);
                     header('Location: ' . BASE_URL . 'admin');
-                    return null;
+                    return false;
                 }
             }
             // no esta el usuario
@@ -38,6 +40,7 @@ class AuthController extends BaseController{
     }
 
     public function getLogout(){
+        Log::logInfo('Logout userId: ' . $_SESSION['userId']);
         unset($_SESSION['userId']);
         header('Location: ' . BASE_URL . 'auth/login');
     }
